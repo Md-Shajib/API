@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I?</title>
+</head>
+
+<body>
+    <h3>Name: <span id="name"></span></h3>
+
+
+    <script>
+        function nameFromApi() {
+            fetch('https://randomuser.me/api')
+                .then(response => response.json())
+                .then(data => {
+                    const user = data.results[0].name;
+                    const fullName = `${user.title} ${user.first} ${user.last}`;
+                    document.getElementById('name').innerText = fullName;
+                })
+        }
+        nameFromApi();
+        setInterval(() => {
+            nameFromApi();
+        }, 2000);
+    </script>
+</body>
+
+</html>
