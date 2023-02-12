@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic behaviour with API</title>
+
+    <style>
+        .container {
+            margin: auto;
+            width: 60%;
+            background-color: #cfcfcf;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Activity: <span id="activity"></span> </h3>
+        <h4>Type: <span id="type"></span></h4>
+    </div>
+
+    <script>
+        function doSomething() {
+            fetch('https://www.boredapi.com/api/activity/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('activity').innerText = data.activity;
+                    document.getElementById('type').innerText = data.type;
+                })
+        }
+
+        setInterval(() => {
+            doSomething();
+        }, 1500);
+    </script>
+</body>
+
+</html>
